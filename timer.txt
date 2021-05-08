@@ -1,1 +1,20 @@
-Time spent for required features: 6 hours
+2021-04-30 20.00 to 2021-04-30 22.00; => 2021-05-01 19.00 to 2021-05-01 19:30; =>
+
+ => 2021-05-03 15:00 to 2021-05-03 16:30 => 2021-05-04 22:00 to 2021-05-05 00:00  - (summarily spent 6 hours per couple days)
+
+desc.:
+- creating extension config file,
+- learned how to create an chrome extension,
+- made filter function to hide posts if thay have more than 5 tags
+- uploading to github
+
+------------------------------------------------------------------
+
+2021-05-06 13.00 to 2021-05-06 14:00; => 2021-05-07 22:00 to 2021-05-08 00:00;  2021-05-08 15:00 to 2021-05-08 16:00
+- (sumarily spent 4 hours per couple days)
+
+desc.:
+- creating toggle show-hide button trigger function
+- optimizing some parts of code
+- perfomance bug solving
+- other minor fixes
