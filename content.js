@@ -1,5 +1,3 @@
-// chrome.runtime.onMessage.addListener(hidePosts);
-
 // to keep actual working methods of the class out of the object's instance whenever possible
 // is a good practice, but since ECMAScript2015 (ES2015, ES6) does not support private methods
 // (though does support private variables with "var" in constructors), IIFE (Immediately-invoked
@@ -77,7 +75,7 @@ let UpgradedMutationObserver = (function () {
     return UpgradedMutationObserver;
 })();
 
-
+//main observer with all logic
 const observer = new UpgradedMutationObserver(function (mutationsList, observer) {
     //getting span elements which consists elements to filter
     let posts = document.querySelectorAll('[automation-id="show-hide-post-main-body"]');
@@ -87,39 +85,53 @@ const observer = new UpgradedMutationObserver(function (mutationsList, observer)
         //show-hide button `Show More`
         let showHideButton = posts[i].parentNode.querySelector('[automation-id="bio-info-toggle-show-button"]');
 
-        if (showHideButton != null && showHideButton.textContent.trim() == "Show More") {
-            showHideButton.click(); //click on show more button if exists
+        if (typeof posts[i].className != 'undefined' && posts[i].className.includes("show-hide-text")) {
+            if (showHideButton != null && showHideButton.textContent.trim() == "Show More" && !posts[i].classList.contains("processing")
+                && !posts[i].classList.contains("processed")) {
+                posts[i].classList.add('processing'); //adding processing classname if it does not contain it
 
-            //if show more clicked than => click on show less button if tags less than 5 and if it exists at all
-            if (showHideButton.textContent != null && showHideButton.textContent.trim() == "Show Less" &&
-                posts[i].querySelectorAll('[class="et-link"]').length <= 5) {
-                showHideButton.click();
-            }
+                showHideButton.click(); //click on show more button if exists
 
-        }
-
-        //replace post if tags are more than 5
-        if (posts[i].querySelectorAll('[class="et-link"]').length > 5) {
-
-            //getting container of post
-            let parentNodes = posts[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-            //replace to short placeholder
-            parentNodes.innerHTML = `
+                //replace post if tags are more than 5
+                if (posts[i].querySelectorAll('[class="et-link"]').length > 5) {
+                    //getting container of post
+                    let parentNodes = posts[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+                    //user Post Link
+                    let postID = parentNodes.parentNode.parentNode.id;
+                    //user profile link
+                    let userID = parentNodes.querySelector('.post-user-name.et-link').getAttribute("href");
+                    //edit username
+                    let editedUserName = userID.slice(8);
+                    //replace to short placeholder
+                    parentNodes.innerHTML = `
                          <span automation-id="show-hide-post-main-body" style="display: block;
                             padding: 27px;
                             margin-bottom: 16px;"
-                                class="show-hide-text ng-star-inserted">Post from USER is hidden by eToro Content Filter -
-                                <a   style="color: #2999f5;cursor: pointer;" class="et-link" target="_blank"
-                                 href='/posts/${parentNodes.parentNode.parentNode.id !== null ? parentNodes.parentNode.parentNode.id : "no_link"}'>See Post</a>
+                                class="show-hide-text ng-star-inserted">Post from <a style="color: #2999f5; cursor: pointer;" 
+                                class="et-link" target="_blank" 
+                                href='${userID}'>@${editedUserName}</a> is hidden by eToro Content Filter -
+                                <a style="color: #2999f5; cursor: pointer;" class="et-link" target="_blank"
+                                 href='/posts/${postID !== null ? postID : " "}'>See Post</a>
                     </span>
                 `;
+                }
+
+                //if show more clicked than => click on show less button if tags less than 5 and if it exists at all
+                if (showHideButton.textContent != null && showHideButton.textContent.trim() == "Show Less" &&
+                    posts[i].querySelectorAll('[class="et-link"]').length <= 5) {
+                    showHideButton.click();
+                }
+            }
+            //add/remove new/old classes
+            posts[i].classList.add('processed');
+            posts[i].classList.remove('processing');
         }
     }
 });
 
-
+//refresh observer funtion if posts container changed
 if (!observer.isConnected()) {
-    setTimeout(() => {
+    setTimeout(() => { //working trick that defers observe executing to the next tick in event loop. So DOM can render first!
         let postsContainer = document.querySelectorAll('ui-layout.ng-isolate-scope');
         if (typeof postsContainer[0] != 'undefined') {
             observer.observe(postsContainer[0], {childList: true, subtree: true});

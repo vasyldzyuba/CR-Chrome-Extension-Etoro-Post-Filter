@@ -10,7 +10,7 @@ desc.:
 
 ------------------------------------------------------------------
 
-2021-05-06 13.00 to 2021-05-06 14:00; => 2021-05-07 22:00 to 2021-05-08 00:00;  2021-05-08 15:00 to 2021-05-08 16:00
+2021-05-06 13.00 to 2021-05-06 14:00; => 2021-05-07 22:00 to 2021-05-08 00:00; => 2021-05-08 15:00 to 2021-05-08 16:00
 - (sumarily spent 4 hours per couple days)
 
 desc.:
@@ -18,3 +18,14 @@ desc.:
 - optimizing some parts of code
 - perfomance bug solving
 - other minor fixes
+
+------------------------------------------------------------------
+
+2021-05-09 00:30 to 2021-05-09 1:30 => 2021-05-09 12:40 to 2021-05-09 13:40 => 2021-05-09 14:05 to 2021-05-09 15:00
+- (sumarily spent 3 hours per day)
+
+desc.:
+- solved issues with perfomance(web page is not freezing anymore)
+- added user link/name to replaced post
+- new mutationObserver added
+- other minor fixes and code editing
