@@ -28,4 +28,5 @@ desc.:
 - solved issues with perfomance(web page is not freezing anymore)
 - added user link/name to replaced post
 - new mutationObserver added
+- added classnames for posts which were loaded before
 - other minor fixes and code editing
