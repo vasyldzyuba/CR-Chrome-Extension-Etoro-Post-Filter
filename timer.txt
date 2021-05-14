@@ -1,3 +1,7 @@
+2 hours of learning how chrome extension works
+ and how to develop it.
+
+---------------------------------
 2021-04-30 20.00 to 2021-04-30 22.00; => 2021-05-01 19.00 to 2021-05-01 19:30; =>
 
  => 2021-05-03 15:00 to 2021-05-03 16:30 => 2021-05-04 22:00 to 2021-05-05 00:00  - (summarily spent 6 hours per couple days)
@@ -30,3 +34,5 @@ desc.:
 - new mutationObserver added
 - added classnames for posts which were loaded before
 - other minor fixes and code editing
+
+
